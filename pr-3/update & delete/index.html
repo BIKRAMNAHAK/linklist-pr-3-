@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+
+    <script>
+        class listlink {
+
+            constructor(d) { // argument passing data 
+
+                this.head = {   // link startin part is head part
+                    data: d,
+                    next: null
+                }
+
+                this.tail = this.head; // head can be assgin to tail
+                this.size = 1;
+
+            }
+
+            addlist(value) {
+                let newNord = {
+                    data: value,
+                    next: null
+                }
+
+
+                this.tail.next = newNord;
+                this.tail = newNord;
+
+                this.size++;
+
+
+            }
+
+            viwelist() {
+                let currentNord = this.head;
+                while (currentNord) {
+                    console.log(currentNord.data)
+                    currentNord = currentNord.next;
+
+                }
+
+
+            }
+
+            deletList(num) {
+
+                let currentNord = this.head;
+
+                for (let i = 1; i < num - 1; i++) {
+                    currentNord = currentNord.next;
+                }
+                currentNord.next = currentNord.next.next;
+             } 
+
+
+            updateList(data, num) {
+
+                let currentNord = this.head;
+
+                for (let i = 1; i < num - 1; i++) {
+                    currentNord = currentNord.next;
+                }
+                currentNord.next.data = data;
+            }
+
+        }
+
+        let list1 = new listlink(100);
+        list1.addlist(200);
+        list1.addlist(300);
+        list1.viwelist();
+
+        // update element
+        list1.updateList(250, 2);
+        console.log("update",list1);
+
+
+        // delete element
+        list1.deletList(2);
+        console.log("delete ",list1);
+       
+
+    </script>
+</body>
+
+</html>

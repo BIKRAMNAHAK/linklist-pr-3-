@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>delete middle</title>
+</head>
+
+<body>
+
+
+
+
+    <script>
+
+        class linklist {
+            constructor(d) {
+                this.head = {
+                    data: d,
+                    next: null
+                }
+                this.tail = this.head;
+                this.size = 1
+            }
+
+            addList(value) {
+                let newNode = {
+                    data: value,
+                    next: null
+                }
+                this.tail.next = newNode;
+                this.tail = newNode;
+                this.size++;
+            }
+
+            deleteMiddel() {
+                if (this.size === 0) {
+                    console.log("List is empty.");
+                    return;
+                }
+
+                if (this.size === 1) {
+                    this.head = null;
+                    this.tail = null;
+                    this.size = 0;
+                    return;
+                }
+
+                let slow = this.head;
+                let fast = this.head;
+                let prev = null;
+
+                while (fast && fast.next) {
+                    prev = slow;
+                    slow = slow.next;
+                    fast = fast.next.next;
+                   
+                }
+                prev.next = slow.next;
+                this.size--;
+            }
+
+        }
+
+        list = new linklist(10);
+        list.addList(20);
+        list.addList(30);
+        list.addList(40);
+        list.addList(50);
+        console.log(list);
+       
+        list.deleteMiddel();
+        console.log("delete middle", list);
+    </script>
+</body>
+
+</html>
